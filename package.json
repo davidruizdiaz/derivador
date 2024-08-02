@@ -1,0 +1,27 @@
+{
+  "name": "derivador_asistencia",
+  "version": "1.0.0",
+  "description": "Derivador para la SPL Asistencia IA",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidruizdiaz/derivador.git"
+  },
+  "author": "David Ruiz Diaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidruizdiaz/derivador/issues"
+  },
+  "homepage": "https://github.com/davidruizdiaz/derivador#readme",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "inquirer": "^10.1.6",
+    "ora": "^8.0.1"
+  }
+}
