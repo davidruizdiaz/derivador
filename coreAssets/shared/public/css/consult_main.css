@@ -1,0 +1,99 @@
+@import url("./normalize.css");
+@import url("./notification.css");
+@import url("./menu.css");
+
+html {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+main {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.center {
+  text-align: center;
+}
+
+/* # FORMULARIO # */
+
+.form {
+  text-align: right;
+}
+
+.form-control {
+  width: 50%;
+  height: 2rem;
+  font-size: 1.1rem;
+  padding: 0 10px;
+}
+
+/* # TABLA # */
+
+.table-container {
+  border: 2px black solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  border-bottom: 2px solid black;
+  padding-bottom: 10px;
+}
+
+tr>td {
+  padding-left: 10px;
+}
+
+td:nth-child(n+2) {
+  text-align: center;
+}
+
+tbody tr {
+  border-top: 1px dashed grey;
+}
+
+tbody tr:hover {
+  background: #e9ecef;
+}
+
+tbody td {
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.btn-edit {
+  background: #FFC107;
+  color: white;
+  font-size: .9rem;
+  border-radius: 3px;
+  border: none;
+  padding: 3px 5px;
+  padding-top: 4px;
+}
+
+.btn-edit:hover {
+  box-shadow: 0 0 2px 0px black;
+}
+
+.btn-del {
+  background: #F44336;
+  color: white;
+  font-size: .9rem;
+  border-radius: 3px;
+  border: none;
+  padding: 3px 5px;
+  padding-top: 4px;
+}
+
+.btn-del:hover {
+  box-shadow: 0 0 2px 0px black;
+}

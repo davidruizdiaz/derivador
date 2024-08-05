@@ -1,0 +1,59 @@
+{
+  "appName": "AsysGrupal",
+  "notShared": [
+    {
+      "assetName": "/public/session.html",
+      "destinyPath": "/public"
+    },
+    {
+      "assetName": "/public/session_main.css",
+      "destinyPath": "/public/css"
+    },
+    {
+      "assetName": "/public/session_main.js",
+      "destinyPath": "/public/js"
+    },
+    {
+      "assetName": "/public/session_modules",
+      "destinyPath": "/public/js/modules"
+    },
+    {
+      "assetName": "/public/attendanceController.js",
+      "destinyPath": "/public/js/modules/attendance_modules"
+    },
+    {
+      "assetName": "/public/storageController.js",
+      "destinyPath": "/public/js/modules/common_modules"
+    },
+    {
+      "assetName": "/server/sessionController.js",
+      "destinyPath": "/server/api/controllers"
+    },
+    {
+      "assetName": "/server/sessionRouter.js",
+      "destinyPath": "/server/api/routers"
+    },
+    {
+      "assetName": "/server/sessionRepositoryBehavior.js",
+      "destinyPath": "/server/repository/behaviors"
+    },
+    {
+      "assetName": "/server/20240713133746-session.js",
+      "destinyPath": "/server/repository/migrations"
+    },
+    {
+      "assetName": "/server/session.js",
+      "destinyPath": "/server/repository/models"
+    },
+    {
+      "assetName": "/server/sessionServices.js",
+      "destinyPath": "/server/services"
+    }
+  ],
+  "variables": [
+    {
+      "assetName": "storageController.js",
+      "destinyPath": "/public/js/modules/common_modules"
+    }
+  ]
+}

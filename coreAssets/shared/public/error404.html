@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oops!</title>
+    <style>
+      * {
+        margin: 0; padding: 0; box-sizing: border-box;
+      }
+      body {
+        font-family: sans-serif;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+        font-size: 1.2em;
+      }
+      .error-container {
+        width: 100%;
+        margin: 10% auto;
+      }
+      .error-title {
+        text-align: center;
+        font-size: 10em;
+        color: white;
+        text-shadow: 0 0 4px black,0 0 8px black,0 0 12px black;
+      }
+      .error-text {
+        text-align: center;
+        font-size: 2.2em;
+        position: relative;
+        top: -60px;
+        text-shadow: 0 0 4px white,0 0 8px white,0 0 12px white;
+      }
+      .error-redirect-container {
+        display: flex;
+        justify-content: center;
+      }
+      .error-redirect {
+        width: 40%;
+        padding: 20px;
+        background-color: #ccc;
+        box-shadow: 0 0 6px 2px #ccc;
+        text-align: center;
+        position: relative;
+        top: -30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+      }
+      .redirect-text {
+        font-size: 1.2em;
+      }
+      .redirect-btn {
+        background-color: orange;
+        padding: 6px;
+        border-radius: 3px;
+        box-shadow: 0 0 4px 2px #cc3;
+      }
+      .redirect-btn:hover {
+        box-shadow: 0 0 4px 2px #cc3, 0 0 5px 1px #212121;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="error-container">
+      <div class="error-title">404</div>
+      <div class="error-text">Oops! No se encontró la página que buscas</div>
+      <div class="error-redirect-container">
+        <div class="error-redirect">
+          <div class="redirect-text">Si estas perdido, lo mejor es </div>
+          <div class="redirect-btn"><a href="/">volver al inicio</a></div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

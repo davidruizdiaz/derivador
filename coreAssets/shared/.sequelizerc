@@ -1,0 +1,11 @@
+/**
+ * Configuraciones para la base de datos
+ */
+const path = require('path');
+
+module.exports = {
+  'config': path.resolve('server', 'repository', 'config', 'config.json'),
+  'models-path': path.resolve('server', 'repository', 'models'),
+  'seeders-path': path.resolve('server', 'repository', 'seeders'),
+  'migrations-path': path.resolve('server', 'repository', 'migrations')
+};

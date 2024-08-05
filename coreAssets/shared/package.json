@@ -1,0 +1,36 @@
+{
+  "name": "tesis_front_1",
+  "version": "1.0.0",
+  "description": "Este proyecto web es para la tesis de MIISO 2024",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidruizdiaz/tesis_front_1.git"
+  },
+  "author": "David Ruiz Diaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidruizdiaz/tesis_front_1/issues"
+  },
+  "homepage": "https://github.com/davidruizdiaz/tesis_front_1#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "canvas": "^2.11.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.10",
+    "express": "^4.18.3",
+    "face-api.js": "^0.22.2",
+    "multer": "^1.4.5-lts.1",
+    "sequelize": "^6.37.1",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "sequelize-cli": "^6.6.2"
+  }
+}

@@ -1,0 +1,49 @@
+.nav {
+  background: #BDBDBD;
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  grid-template-rows: 60px;
+}
+
+.menu {
+  display: flex;
+  width: 50%;
+  padding: 20px;
+  margin-left: 5%;
+  column-gap: 20px;
+  margin-top: 0;
+}
+
+.menu-item {
+  list-style-type: none;
+}
+
+.menu-item a {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: #212121;
+}
+
+.menu-item a.active {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-decoration-color: #009688;
+}
+
+.btn-close-content {
+  align-self: center;
+}
+
+.btn-close {
+  padding: 8px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: #212121;
+}
+
+.btn-close:hover {
+  background: #FF5252;
+  padding: 8px 20px;
+  color: white;
+}

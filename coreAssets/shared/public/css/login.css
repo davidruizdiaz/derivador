@@ -1,0 +1,33 @@
+main {
+  width: 35%;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.home-menu {
+  text-align: right;
+  margin-right: 100px;
+  margin-top: 10px;
+}
+
+.home-menu a {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: #212121;
+  padding: 8px 20px;
+  border-radius: 3px;
+}
+
+.home-menu a:hover {
+  background: #009688;
+  border-radius: 3px;
+  color: white;
+}

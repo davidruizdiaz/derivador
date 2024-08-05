@@ -1,31 +1,29 @@
-import { Command } from 'commander';
-import { deb } from '../actions/index.js';
+import { program } from 'commander';
+import { analyzeOptions } from '../options/index.js';
 
-export const programInit = opts => {
-  const { appName: name, appDescription: description, appVersion: version } = opts;
-  const program = new Command();
+const progInfo = {
+  appName: "asisgen",
+  appDescription: "Genera la aplicación de asistencia individual o grupal dependiendo de las opciones seleccionadas.",
+  appVersion: "1.0.0",
+};
+
+export const programInit = () => {
+  const { appName: name, appDescription: description, appVersion: version } = progInfo;
+
   program
     .name(name)
     .description(description)
+    .requiredOption('-t, --type <tipo>', 'Tipo de aplicación a crear. Valores posibles [inidividual|grupal]')
     .version(version)
-
-
-  program
-    .option('-t, --text <string>, Texto de prueba')
-    .option('-b, --bool, Opción booleana de ejemplo');
-
-  program
-    .command('test')
-    .description('Inicia la prueba')
-    .action(setOpts);
-
-
-  function setOpts() {
-    deb(program.opts());
-  }
+    .action(opts => {
+      if (!opts.type || (opts.type !== 'individual' && opts.type !== 'grupal')) {
+        console.error('Error en las opciones, verifique las opciones con --help');
+        return;
+      }
+      analyzeOptions(opts.type)
+    });
 
   program.parse();
-
 };
 
 

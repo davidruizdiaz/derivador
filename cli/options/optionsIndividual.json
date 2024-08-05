@@ -1,0 +1,22 @@
+{
+  "appName": "AsysIndividual",
+  "notShared": [
+    {
+      "assetName": "/public/imgs",
+      "destinyPath": "/public/imgs"
+    },
+    {
+      "assetName": "/public/models",
+      "destinyPath": "/public/models"
+    },
+    {
+      "assetName": "/public/faceDetection.js",
+      "destinyPath": "/public/js/modules/attendance_modules"
+    }
+  ],
+  "variables": [
+    {
+      "": ""
+    }
+  ]
+}

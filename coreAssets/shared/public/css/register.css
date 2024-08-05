@@ -1,0 +1,152 @@
+/* # LAYOUT GENERAL # */
+
+main {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1em;
+}
+
+/* # TITULO # */
+
+.center {
+  text-align: center;
+}
+
+/* # IMAGENES # */
+
+img {
+  width: 100%;
+  box-shadow: 0 0 3px 1px black;
+  border-radius: 3px;
+}
+
+.face-left {
+  object-fit: none;
+  object-position: 20% 15%;
+  opacity: .5;
+  height: 150px;
+}
+
+.face-center {
+  object-fit: none;
+  object-position: 40% 15%;
+  opacity: .5;
+  height: 150px;
+}
+
+.face-right {
+  object-fit: none;
+  object-position: 80% 15%;
+  opacity: .5;
+  height: 150px;
+}
+
+.foto-info {
+  font-size: 1em;
+  font-weight: bold;
+  color: #009688;
+}
+
+.images-container {
+  width: 100%;
+  height: 200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 10px;
+  justify-content: space-around;
+}
+
+/* # BOTONES DE FORMULARIO # */
+
+button:disabled {
+  opacity: .3;
+  pointer-events: none;
+}
+
+.button-container {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1em;
+}
+
+.btn-submit {
+  height: 2.5rem;
+  background: #009688;
+  color: white;
+  font-size: 1.1rem;
+  border-radius: 3px;
+  border: none;
+}
+
+.btn-submit:hover {
+  box-shadow: 0 0 3px 1px black;
+}
+
+.btn-cancel {
+  height: 2.5rem;
+  background: #FF5722;
+  color: white;
+  font-size: 1.1rem;
+  border-radius: 3px;
+  border: none;
+}
+
+.btn-cancel:hover {
+  box-shadow: 0 0 3px 1px black;
+}
+
+.btn-foto-container {
+  width: 65%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.btn-foto {
+  height: 2.5rem;
+  background: #0097A7;
+  color: white;
+  font-size: 1.1rem;
+  border-radius: 3px;
+  border: none;
+}
+
+.btn-foto:hover {
+  box-shadow: 0 0 3px 1px black;
+}
+
+/* # CONTROLES DE FORMULARIO # */
+
+.input-container {
+  border: 3px black solid;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+.form-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 1em;
+}
+
+.form-control {
+  width: 100%;
+  height: 2rem;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  padding: 0 10px;
+}
+
+/* # ERRORES # */
+
+.error {
+  font-size: .8em;
+  color: red;
+}

@@ -1,0 +1,79 @@
+#notify-content {
+  position: fixed;
+  left: 80%;
+  top: 30px;
+}
+
+.notifybar {
+  min-width: 300px;
+  margin-left: -150px;
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
+  border-radius: 3px;
+  padding: 16px;
+  margin-bottom: 5px;
+  position: relative;
+  -webkit-animation: fadein 0.3s ease, fadeout 0.4s ease 2.6s;
+  animation: fadein 0.3s ease, fadeout 0.4s ease 2.6s;
+}
+
+.notifybar.info {
+  background-color: #1976D2;
+}
+
+.notifybar.error {
+  background-color: #E64A19;
+  color: #fff;
+  font-size: 1em;
+}
+
+/* Animations */
+
+@-webkit-keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+
+  to {
+    top: 15px;
+    opacity: 1
+  }
+}
+
+@keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+
+  to {
+    top: 15px;
+    opacity: 1
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    top: 0;
+    opacity: 1;
+  }
+
+  to {
+    top: -15px;
+    opacity: 0
+  }
+}
+
+@keyframes fadeout {
+  from {
+    top: 0;
+    opacity: 1;
+  }
+
+  to {
+    top: -15px;
+    opacity: 0
+  }
+}

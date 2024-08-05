@@ -1,0 +1,10 @@
+@import url("./normalize.css");
+@import url("./notification.css");
+@import url("./register.css");
+@import url("./login.css");
+
+html {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
