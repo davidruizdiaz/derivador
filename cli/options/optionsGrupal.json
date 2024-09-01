@@ -15,7 +15,7 @@
     },
     {
       "assetName": "/public/session_modules",
-      "destinyPath": "/public/js/modules"
+      "destinyPath": "/public/js/modules/session_modules"
     },
     {
       "assetName": "/public/attendanceController.js",
@@ -52,8 +52,208 @@
   ],
   "variables": [
     {
-      "assetName": "storageController.js",
-      "destinyPath": "/public/js/modules/common_modules"
+      "assetName": "/public/readme.js",
+      "destinyPath": "/public",
+      "fileExt": ".md",
+      "variabilityPoints": {
+        "1": "- **Sesiones:** registra las sesiones en la que se realizarán las capturas de fotos."
+      }
+    },
+    {
+      "assetName": "/public/index.js",
+      "destinyPath": "/public",
+      "fileExt": ".html",
+      "variabilityPoints": {
+        "1": "",
+        "2": "<script defer src=\"./js/dayjs.min.js\"></script>",
+        "3": "<a href=\"./session.html\">Registrar la sesión</a>",
+        "4": "Registro de Asistencia",
+        "5": "Apunta la cámara hacia los participantes",
+        "6": "<h4 id=\"capture-info\"></h4>",
+        "7": ""
+      }
+    },
+    {
+      "assetName": "/public/css/cam.js",
+      "destinyPath": "/public/css",
+      "fileExt": ".css",
+      "variabilityPoints": {
+        "1": "616",
+        "2": "464"
+      }
+    },
+    {
+      "assetName": "/public/css/report_main.js",
+      "destinyPath": "/public/css",
+      "fileExt": ".css",
+      "variabilityPoints": {
+        "1": "width: 85%;",
+        "2": "margin: 20px auto;",
+        "3": "1fr 1fr",
+        "4": "",
+        "5": "5",
+        "6": "0",
+        "7": "2fr 1fr 1fr"
+      }
+    },
+    {
+      "assetName": "/public/css/spinner.js",
+      "destinyPath": "/public/css",
+      "fileExt": ".css",
+      "variabilityPoints": {
+        "1": "",
+        "2": "",
+        "3": "616",
+        "4": "464"
+      }
+    },
+    {
+      "assetName": "/public/js/attendance_main.js",
+      "destinyPath": "/public/js",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "import { init } from \"./modules/attendance_modules/attendanceController.js\""
+      }
+    },
+    {
+      "assetName": "/public/js/modules/attendance_modules/imageProcessor.js",
+      "destinyPath": "/public/js/modules/attendance_modules",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "",
+        "2": "import { StorageController } from \"../common_modules/storageController.js\";\nimport { resultProcess } from \"./attendanceController.js\";",
+        "3": "",
+        "4": "resultProcess(await sendBlobToServer(blob))",
+        "5": "const sessionId = new StorageController().get().id;\n\t\treturn await sendFaceToAttendanceRegister(blob, sessionId);"
+      }
+    },
+    {
+      "assetName": "/public/js/modules/common_modules/apiConsumer.js",
+      "destinyPath": "/public/js/modules/common_modules",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "msg: string",
+        "2": "(blob, sessionId)",
+        "3": "formData.append('imageBlob', blob);\n\tformData.append('sessionId', sessionId);",
+        "4": "/**\n * Envía datos de una sesión al servidor para ser guardada.\n * @param session {Object} Datos de la sesión\n * @example { description: string, date: string, numCaptures: number, initHour: string, endHour: string }\n * @return {Object} JSON con los datos de la sesión guardada o un mensaje de error\n * @example\n * { ok: boolean, sesion: { description: string } | msg: string }\n */\nconst addNewSession = async session => {\n\ttry {\n\t\tif (!session) {\n\t\t\tthrow new Error('Falta el parámetro sesión');\n\t\t}\n\t\tconst formData = new FormData();\n\t\tformData.append('description', session.description);\n\t\tformData.append('date', session.date);\n\t\tformData.append('numCaptures', session.numCaptures);\n\t\tformData.append('initHour', session.initHour);\n\t\tformData.append('endHour', session.endHour);\n\t\tconst options = {\n\t\t\tmethod: 'POST',\n\t\t\tbody: formData,\n\t\t}\n\t\tconst resp = await fetch(APIURL + '/session/addNew', options);\n\t\tconst data = await resp.json();\n\t\treturn data;\n\t} catch (error) {\n\t\tconsole.error(error)\n\t\treturn { ok: false, msg: '⚠️ Error inesperado' };\n\t}\n};\n/**\n * Envía petición para actualizar el estada de una sesión.\n * @param session {Object} Datos requeridos de la sesión, id  y state\n * @example { id: string, state: string } El estado puede ser ACT, COM, INC\n * @return {Object} JSON con la confirmación\n * @example\n * { ok: boolean, msg: string }\n */\nconst updateSessionState = async session => {\n\ttry {\n\t\tif (!session) {\n\t\t\tthrow new Error('Falta el parámetro sesión');\n\t\t}\n\t\tconst formData = new FormData();\n\t\tformData.append('id', session.id);\n\t\tformData.append('state', session.state);\n\t\tconst options = {\n\t\t\tmethod: 'PUT',\n\t\t\tbody: formData,\n\t\t}\n\t\tconst resp = await fetch(APIURL + '/session/updateState', options);\n\t\tconst data = await resp.json();\n\t\treturn data;\n\t} catch (error) {\n\t\tconsole.error(error)\n\t\treturn { ok: false, msg: '⚠️ Error inesperado' };\n\t}\n};",
+        "5": "addNewSession,\n\tupdateSessionState,"
+      }
+    },
+    {
+      "assetName": "/public/js/modules/common_modules/notifications.js",
+      "destinyPath": "/public/js/modules/common_modules",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "",
+        "2": "description: string,\n *\tmsg: string",
+        "3": "const { msg, description } = reqData;\n\t\tconst temp = `<h3>Sesión ${description}</h3>\n\t\t\t\t\t\t\t\t\t<p>${msg}</p>`;",
+        "4": "}, 20000);",
+        "5": "}, 10000);"
+      }
+    },
+    {
+      "assetName": "/public/js/modules/report_modules/reportController.js",
+      "destinyPath": "/public/js/modules/report_modules",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "<strong>Sesión: </strong><span>${att.sessionDesc}</span>"
+      }
+    },
+    {
+      "assetName": "/server/api/controllers/attendanceController.js",
+      "destinyPath": "/server/api/controllers",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "@param sessionId {string} Id de la sesión",
+        "2": "msg: string",
+        "3": "blob, sessionId"
+      }
+    },
+    {
+      "assetName": "/server/api/routers/index.js",
+      "destinyPath": "/server/api/routers",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "const sessionRouter = require('./sessionRouter');",
+        "2": "router.use('/session', multer().none(), sessionRouter);"
+      }
+    },
+    {
+      "assetName": "/server/api/routers/marcacionRouter.js",
+      "destinyPath": "/server/api/routers",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "personas",
+        "2": "imageBlob",
+        "3": "const sessionId = req.body.sessionId;",
+        "4": "blob, sessionId"
+      }
+    },
+    {
+      "assetName": "/server/faceapi/faceapi_gateways.js",
+      "destinyPath": "/server/faceapi",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "608",
+        "2": "Detecta rotros en una imagen y los descriptores almacenados\n * en la base de datos para realizar el reconocimiento de personas",
+        "3": "{Array<string>} Array de Documentos de las personas reconocidas",
+        "4": "const refDetections = await faceapi.detectAllFaces(",
+        "5": ").withFaceLandmarks().withFaceDescriptors();\n\t\tif (!refDetections.length) {\n\t\t\tthrow new Error('No se detectaron rostros en la imagen');\n\t\t}",
+        "6": "let matches = refDetections.map(det => {\n\t\t\tconst bestMatch = queryMatcher.findBestMatch(det.descriptor);\n\t\t\treturn bestMatch._label.split('_')[1];\n\t\t});\n\t\tif (!matches.length) {\n\t\t\tthrow new Error('No se detectaron rostros en la imagen');\n\t\t}\n\t\treturn matches;"
+      }
+    },
+    {
+      "assetName": "/server/repository/behaviors/attendanceRepositoryBehavior.js",
+      "destinyPath": "/server/repository/behaviors",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "Op, where",
+        "2": "const dayjs = require('dayjs');",
+        "3": "Registra las asistencias de las personas identificadas.",
+        "4": "attendances {Array<Object>} Array de asistencias",
+        "5": "[{ personId: UUID, sessionId: UUID, hours: 'HH:mm:ss' }, ..]",
+        "6": "{Object} Mensaje de confirmación",
+        "7": "{ ok: boolean, msg: string }",
+        "8": "attendances",
+        "9": "atts = await this.attendance.bulkCreate(attendances);\n\t\t\tif (!atts || !atts.length) {",
+        "10": "return { ok: true, msg: `Se resgistraron ${atts.length} asistencias` }",
+        "11": ", session: string",
+        "12": "createdAt",
+        "13": "\tcreatedAt: { [Op.between]: [dateFrom, dateUntil] }\n\t\t\t\t},\n\t\t\t\tinclude: {\n\t\t\t\t\tmodel: this.db.Session,\n\t\t\t\t\twhere: {\n\t\t\t\t\t\tstate: 'COM'\n\t\t\t\t\t},\n\t\t\t\t},",
+        "14": "attendances: !atts ? [] : atts.map( at => ({\n\t\t\t\t\tdate: dayjs(at.createdAt).format('DD-MM-YYYY HH:mm:ss').toString(),\n\t\t\t\t\thours: at.hours,\n\t\t\t\t\tsessionDesc: at.Session.description\n\t\t\t\t})),"
+      }
+    },
+    {
+      "assetName": "/server/repository/migrations/20240410122905-create-attendance.js",
+      "destinyPath": "/server/repository/migrations",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "sessionId: {\n\t\t\t\ttype: Sequelize.UUID,\n\t\t\t\treferences: {\n\t\t\t\t\tmodel: {\n\t\t\t\t\t\ttableName: 'Sessions',\n\t\t\t\t\t},\n\t\t\t\t\tkey: 'id',\n\t\t\t\t},\n\t\t\t\tallowNull: false,\n\t\t\t\tonDelete: 'RESTRICT',\n\t\t\t\tonUpdate: 'RESTRICT',\n\t\t\t},"
+      }
+    },
+    {
+      "assetName": "/server/repository/models/attendance.js",
+      "destinyPath": "/server/repository/models",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "/**\n\t\t\t * Relacion one-to-many con Session\n\t\t\t * Indica que varios Attendance pueden pertenecer a una Session\n\t\t\t * En el modelo Session se agregó el hasMany(models.Attendance,...)\n\t\t\t */\n\t\t\tthis.belongsTo(models.Session, {\n\t\t\t\tforeignKey: {\n\t\t\t\t  type: DataTypes.UUIDV4,\n\t\t\t\t},\n\t\t\t\tonDelete: 'RESTRICT',\n\t\t\t\tonUpdate: 'RESTRICT',\n\t\t\t})",
+        "2": "sessionId: {\n\t\t\ttype: DataTypes.UUIDV4,\n\t\t\tallowNull: false,\n\t\t},"
+      }
+    },
+    {
+      "assetName": "/server/services/attendanceServices.js",
+      "destinyPath": "/server/services",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "Registra la asistencia de varias personas.",
+        "2": "@param faceBlob {Buffer} Buffer de la imagen\n\t * @param sessionId {string} Id de la sesión",
+        "3": "{ ok: boolean, msg: string }",
+        "4": "faceBlob, sessionId",
+        "5": "const matches = await matchFace(queryResult.personsDescriptors, faceBlob);\n\t\t\tconst documetsMatches = matches.filter(i => i !== undefined);\n\t\t\tlet personsIds = [];\n\t\t\tfor (const doc of documetsMatches) {\n\t\t\t\tpersonsIds.push(await personService.getPersonIdByDocumentService(doc));\n\t\t\t}\n\t\t\tif (!personsIds.length) {\n\t\t\t\tthrow new Error('Error al recuperar información de las personas');\n\t\t\t}",
+        "6": "let attendances = [];\n\t\t\tfor (const p of personsIds) {\n\t\t\t\tattendances.push({ personId: p.personId, sessionId: sessionId, hours: dayjs().format('HH:mm:ss').toString(), });\n\t\t\t}",
+        "7": "const attResult = await this.attendanceDb.add(attendances);\n\t\t\treturn attResult;",
+        "8": "name: string,\n\t *\t document: string,\n\t *\t attendances: [{date: string, hours: string, session: string}, ...],\n\t *\t | msg: string"
+      }
     }
   ]
 }

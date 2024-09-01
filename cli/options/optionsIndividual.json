@@ -2,10 +2,6 @@
   "appName": "AsysIndividual",
   "notShared": [
     {
-      "assetName": "/public/imgs",
-      "destinyPath": "/public/imgs"
-    },
-    {
       "assetName": "/public/models",
       "destinyPath": "/public/models"
     },
@@ -16,7 +12,208 @@
   ],
   "variables": [
     {
-      "": ""
+      "assetName": "/public/readme.js",
+      "destinyPath": "/public",
+      "fileExt": ".md",
+      "variabilityPoints": {
+        "1": ""
+      }
+    },
+    {
+      "assetName": "/public/index.js",
+      "destinyPath": "/public",
+      "fileExt": ".html",
+      "variabilityPoints": {
+        "1": "<script defer src=\"./js/face-api.min.js\"></script>\"",
+        "2": "",
+        "3": "",
+        "4": "Marca tu asistencia",
+        "5": "Mira la cámara",
+        "6": "",
+        "7": "width=\"416\" height=\"314\""
+      }
+    },
+    {
+      "assetName": "/public/css/cam.js",
+      "destinyPath": "/public/css",
+      "fileExt": ".css",
+      "variabilityPoints": {
+        "1": "416",
+        "2": "314"
+      }
+    },
+    {
+      "assetName": "/public/css/report_main.js",
+      "destinyPath": "/public/css",
+      "fileExt": ".css",
+      "variabilityPoints": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "grid-template-rows: 20px;",
+        "5": "0",
+        "6": "5",
+        "7": "1fr"
+      }
+    },
+    {
+      "assetName": "/public/css/spinner.js",
+      "destinyPath": "/public/css",
+      "fileExt": ".css",
+      "variabilityPoints": {
+        "1": "width: 425px;",
+        "2": "height: 324px;",
+        "3": "416",
+        "4": "314"
+      }
+    },
+    {
+      "assetName": "/public/js/attendance_main.js",
+      "destinyPath": "/public/js",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "import { loadFaceApi, startDetections, stopDetections } from \"./modules/attendance_modules/faceDetection.js\";\n/** Inicia el módulo y la aplicación */\nasync function init() {\n\tconst isLoaded = await loadFaceApi();\n\tif (isLoaded) {\n\t\tstartDetections();\n\t} else {\n\t\tconsole.error('Error');\n\t}\n}"
+      }
+    },
+    {
+      "assetName": "/public/js/modules/attendance_modules/imageProcessor.js",
+      "destinyPath": "/public/js/modules/attendance_modules",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "import { stopDetections } from \"./faceDetection.js\";",
+        "2": "",
+        "3": "stopDetections();",
+        "4": "await sendBlobToServer(blob);",
+        "5": "const data = await sendFaceToAttendanceRegister(blob);\n\t\tif (data.ok) {\n\t\t\tnotificator.showData(data);\n\t\t\tnotificator.notify('Persona identificada', 'info')\n\t\t\treturn data;\n\t\t} else {\n\t\t\tnotificator.showData(data);\n\t\t\tnotificator.notify('No se pudo identificar a la persona', 'error')\n\t\t\treturn data;\n\t\t}"
+      }
+    },
+    {
+      "assetName": "/public/js/modules/common_modules/apiConsumer.js",
+      "destinyPath": "/public/js/modules/common_modules",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "person: { \n *    name: string,\n *    document: string,\n *    date: string,\n *    hour: string\n *   } | msg: string",
+        "2": "blob",
+        "3": "formData.append('clientFaceBlob', blob);",
+        "4": "",
+        "5": ""
+      }
+    },
+    {
+      "assetName": "/public/js/modules/common_modules/notifications.js",
+      "destinyPath": "/public/js/modules/common_modules",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "import { startDetections } from \"../attendance_modules/faceDetection.js\";",
+        "2": "person: {\n *\t\tname: string, \n *\t\tdocument: string, \n *\t\tdate: string, \n *\t\thour: string \n *\t}",
+        "3": "const { person: per } = reqData;\n\t\tconst temp = `<h3>Información registrada</h3>\n\t\t\t<p>\n\t\t\t\t<strong>Nombre: </strong> <span>${per.name}</span>\n\t\t\t\t<br/>\n\t\t\t\t<strong>Documento: </strong> <span>${per.document}</span>\n\t\t\t\t<br/>\n\t\t\t\t<strong>Fecha de entrada: </strong> <span class=\"fecha\">${per.date}</span>\n\t\t\t\t<br/>\n\t\t\t\t<strong>Hora de entrada: </strong> <span class=\"hora\">${per.hours}</span>\n\t\t\t</p>`;",
+        "4": "\tsetTimeout(startDetections, 2000)\n\t\t}, 5000);",
+        "5": "\tsetTimeout(startDetections, 2000)\n\t\t}, 5000);"
+      }
+    },
+    {
+      "assetName": "/public/js/modules/report_modules/reportController.js",
+      "destinyPath": "/public/js/modules/report_modules",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": ""
+      }
+    },
+    {
+      "assetName": "/server/api/controllers/attendanceController.js",
+      "destinyPath": "/server/api/controllers",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "",
+        "2": "person: {\n *\t\tname: string,\n *\t\tdocument: string,\n *\t\tdate: string,\n *\t\thour: string,\n *\t}|msg: string",
+        "3": "blob"
+      }
+    },
+    {
+      "assetName": "/server/api/routers/index.js",
+      "destinyPath": "/server/api/routers",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "",
+        "2": ""
+      }
+    },
+    {
+      "assetName": "/server/api/routers/marcacionRouter.js",
+      "destinyPath": "/server/api/routers",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "una persona",
+        "2": "clientFaceBlob",
+        "3": "",
+        "4": "blob"
+      }
+    },
+    {
+      "assetName": "/server/faceapi/faceapi_gateways.js",
+      "destinyPath": "/server/faceapi",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "320",
+        "2": "Compara la imagen de una persona con los descriptores almacenados\n * en la base de datos para realizar el reconocimiento de la persona",
+        "3": "string Documento de la persona reconocida",
+        "4": "const refDetection = await faceapi.detectSingleFace(",
+        "5": ").withFaceLandmarks().withFaceDescriptor();",
+        "6": "const bestMatch = queryMatcher.findBestMatch(refDetection.descriptor);\n\t\treturn bestMatch._label.split('_')[1];"
+      }
+    },
+    {
+      "assetName": "/server/repository/behaviors/attendanceRepositoryBehavior.js",
+      "destinyPath": "/server/repository/behaviors",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "Op",
+        "2": "",
+        "3": "Registra la asistencia de una persona.",
+        "4": "attendance {object} Objeto con datos de la asistencia",
+        "5": "{ personId: UUID, date: 'YYYY-MM-DD', hours: 'HH:mm:ss' }",
+        "6": "{Object} Registro de la asistencia",
+        "7": "{ ok: boolean, person: { name: string, date: 'YYYY-MM-DD', hours: 'HH:mm:ss' } | msg: string }",
+        "8": "attendance",
+        "9": "att = await this.attendance.create(attendance);\n\t\t\tif (!att) {",
+        "10": "const per = await this.db.Person.findByPk(att.personId);\n\t\t\t\treturn {\n\t\t\t\t\tok: true,\n\t\t\t\t\tperson: {\n\t\t\t\t\t\tname: per.name,\n\t\t\t\t\t\tdocument: per.document,\n\t\t\t\t\t\tdate: att.date,\n\t\t\t\t\t\thours: att.hours,\n\t\t\t\t\t},\n\t\t\t\t};",
+        "11": "",
+        "12": "date",
+        "13": "\tdate: { [Op.between]: [dateFrom, dateUntil] }\n\t\t\t\t},",
+        "14": "attendances: !atts ? [] : atts.map(at => ({ date: at.date, hours: at.hours })),"
+      }
+    },
+    {
+      "assetName": "/server/repository/migrations/20240410122905-create-attendance.js",
+      "destinyPath": "/server/repository/migrations",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "date: {\n\t\t\t\ttype: Sequelize.DATEONLY,\n\t\t\t\tallowNull: false,\n\t\t\t},"
+      }
+    },
+    {
+      "assetName": "/server/repository/models/attendance.js",
+      "destinyPath": "/server/repository/models",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "",
+        "2": "date: {\n\t\t\ttype: DataTypes.DATEONLY,\n\t\t\tallowNull: false,\n\t\t},"
+      }
+    },
+    {
+      "assetName": "/server/services/attendanceServices.js",
+      "destinyPath": "/server/services",
+      "fileExt": ".js",
+      "variabilityPoints": {
+        "1": "Registra la asistencia de una persona.",
+        "2": "@param faceBlob {Object} Buffer de la imagen",
+        "3": "{ ok: boolean, person:{ name: string, document: string, date: string, hour: string, }|msg: string }",
+        "4": "faceBlob",
+        "5": "const personMatchedDocument = await matchFace(queryResult.personsDescriptors, faceBlob);\n\t\t\tconst personWithId = await personService.getPersonIdByDocumentService(personMatchedDocument);\n\t\t\tif (!personWithId.ok) {\n\t\t\t\tthrow new Error(personWithId.msg);\n\t\t\t}",
+        "6": "const newAttendance = {\n\t\t\t\tpersonId: personWithId.personId,\n\t\t\t\tdate: dayjs().format('YYYY-MM-DD'),\n\t\t\t\thours: dayjs().format('HH:mm:ss')\n\t\t\t}",
+        "7": "const savedAttendance = await this.attendanceDb.add(newAttendance);\n\t\t\treturn savedAttendance;",
+        "8": "result: {\n\t * \t\tname: string,\n\t * \t\tdocument: string,\n\t * \t\tattendances: [{date: string, hours: string}, ...],\n\t * \t} | msg: string"
+      }
     }
   ]
 }
