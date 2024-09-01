@@ -13,5 +13,4 @@ El ejemplo se basa en una familia de software para la marcación de asistencias.
 |NodeJS       |v20.11.0 |
 |chalk        |^5.3.0   |
 |Commander    |^12.1.0  |
-|Inquirer     |^10.1.6  |
 |Ora          |^8.0.1   |
