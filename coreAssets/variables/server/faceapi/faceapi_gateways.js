@@ -1,3 +1,8 @@
+import { removeEmptyLines } from "../../auxi.js";
+
+export function genResource(variabilityPoints) {
+  const vp = { ...variabilityPoints };
+  return removeEmptyLines`
 /**
  * Submódulo que sirve de interfaz con la faceapi.
  * @module frameworks
@@ -11,7 +16,7 @@ const dayjs = require('dayjs');
 // Para detectSingleFace recomendado: 128 160
 // Por defecto: 416
 
-const inputSize = 320;
+const inputSize = ${vp[1]};
 const scoreThreshold = 0.5;
 
 /**
@@ -46,28 +51,26 @@ async function getJsonDescriptorsFromFaceBlobs(faceBlobs) {
 }
 
 /**
- * Compara la imagen de una persona con los descriptores almacenados
- * en la base de datos para realizar el reconocimiento de la persona
+ * ${vp[2]}
  * @async
  * @param {Array<object>} personsDesciptors Array con los descriptores de la db
  * @example [{label: string, descriptors:[[...],...]}]
  * @param {Buffer} faceBlob Buffer de la imagen a comparar
- * @return string Documento de la persona reconocida
+ * @return ${vp[3]}
  */
 async function matchFace(personsDesciptors, faceBlob) {
   try {
     const refImage = await loadImage(faceBlob);
-    const refDetection = await faceapi.detectSingleFace(
+    ${vp[4]}
       refImage,
       new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold })
-    ).withFaceLandmarks().withFaceDescriptor();
+    ${vp[5]}
     let queryDescriptors = [];
     for (const descriptor of personsDesciptors) {
       queryDescriptors.push(faceapi.LabeledFaceDescriptors.fromJSON(descriptor));
     }
     const queryMatcher = new faceapi.FaceMatcher(queryDescriptors, scoreThreshold);
-    const bestMatch = queryMatcher.findBestMatch(refDetection.descriptor);
-    return bestMatch._label.split('_')[1];
+    ${vp[6]}
   } catch (error) {
     console.error(error);
     throw new Error('Error al procesar el rostro');
@@ -78,3 +81,5 @@ module.exports = {
   getJsonDescriptorsFromFaceBlobs,
   matchFace,
 };
+`;
+}

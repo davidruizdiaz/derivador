@@ -1,14 +1,17 @@
+import { removeEmptyLines } from "../../../../auxi.js";
+
+export function genResource(variabilityPoints) {
+  const vp = { ...variabilityPoints };
+  return removeEmptyLines`
 /**
  * Modulo encargado de hacer las consultas a la API.
  * @module Común/APIConsumer
  */
-
 /**
  * URL de la API
  * @type {string}
  */
 const APIURL = "http://localhost:2700/api"
-
 /**
  * Envía imagen para comprobación de rostro.
  * @param blob {object} Blob de la imagen
@@ -17,21 +20,15 @@ const APIURL = "http://localhost:2700/api"
  * @example
  * { 
  *   ok: boolean, 
- *   person: { 
- *    name: string, 
- *    document: string, 
- *    date: string, 
- *    hour: string 
- *   } | msg: string
+ *   ${vp[1]}
  * }
  */
-const sendFaceToAttendanceRegister = async (blob) => {
+const sendFaceToAttendanceRegister = async ${vp[2]} => {
   if (!blob) {
     return new Error('No se pasó la imagen');
   }
   const formData = new FormData();
-  formData.append('clientFaceBlob', blob);
-
+  ${vp[3]}
   const options = {
     method: 'POST',
     body: formData,
@@ -45,7 +42,6 @@ const sendFaceToAttendanceRegister = async (blob) => {
     return { ok: false, msg: '⚠️ Error inesperado' };
   }
 };
-
 /**
  * Envía datos de una persona al servidor para ser guardado.
  * @param person {Object} Datos de la persona
@@ -71,9 +67,10 @@ const addNewPerson = async person => {
     formData.append('document', person.document);
     person.faceBlobs.forEach((blob, i) => {
       formData.append(
-        `faceBlobs`,
+        'faceBlobs',
         blob,
-        `${person.name.replaceAll(' ', '')}_${person.document}_face${i}.png`);
+        \`\${person.name.replaceAll(' ', '')}_\${person.document}_face\${i}.png\`
+      );
     });
     const options = {
       method: 'POST',
@@ -87,7 +84,6 @@ const addNewPerson = async person => {
     return { ok: false, msg: '⚠️ Error inesperado' };
   }
 };
-
 /**
  * Envía datos de una persona al servidor para actualizarlos.
  * @param person {Object} Datos de la persona
@@ -113,9 +109,10 @@ const updatePerson = async person => {
     formData.append('document', person.document);
     person.faceBlobs.forEach((blob, i) => {
       formData.append(
-        `faceBlobs`,
+        'faceBlobs',
         blob,
-        `${person.name.replaceAll(' ', '')}_${person.document}_face${i}.png`);
+        \`\${person.name.replaceAll(' ', '')}_\${person.document}_face\${i}.png\`
+      );
     });
     const options = {
       method: 'PUT',
@@ -129,7 +126,6 @@ const updatePerson = async person => {
     return { ok: false, msg: '⚠️ Error inesperado' };
   }
 };
-
 /**
  * Envía id para eliminar los datos de una persona.
  * @param id {uuid} Id de la persona
@@ -156,7 +152,6 @@ const deletePerson = async id => {
     return { ok: false, msg: '⚠️ Error inesperado' };
   }
 };
-
 /**
  * Envía id para eliminar las marcaciones de una persona.
  * @param id {uuid} Id de la persona
@@ -183,7 +178,6 @@ const deletePersonAttendances = async personId => {
     return { ok: false, msg: '⚠️ Error inesperado' };
   }
 };
-
 /**
  * Envía datos al servidor para realizar el login.
  * @param userData {Object} Datos del usuario
@@ -215,7 +209,6 @@ const sendUserDataToLogin = async userData => {
     return { ok: false, msg: '⚠️ Error inesperado' };
   }
 };
-
 /**
  * Busca personas por nombre o documento.
  * @param param {string} Parámetro de búsqueda
@@ -244,7 +237,6 @@ const searchPersonByNameOrDocument = async param => {
     return { ok: false, msg: '⚠️ Error inesperado' };
   }
 };
-
 /**
  * Busca personas por id.
  * @param id {uuid} Id de la persona
@@ -274,7 +266,6 @@ const getPersonById = async id => {
     return { ok: false, msg: '⚠️ Error inesperado' };
   }
 };
-
 /**
  * Consulta las asistencias de una persona.
  * @param queryObject {Object} Objeto con datos para consulta
@@ -284,10 +275,10 @@ const getPersonById = async id => {
  * @example
  * {
  *   ok: boolean,
- *   ?name: string,
- *   ?document: string,
- *   ?attendances: [{date: string, hours: string}, ...],
- *   | ?msg: string
+ *   name: string,
+ *   document: string,
+ *   attendances: [{date: string, hours: string}, ...],
+ *   | msg: string
  * }
  */
 const attendanceConsult = async queryObject => {
@@ -309,7 +300,7 @@ const attendanceConsult = async queryObject => {
     return { ok: false, msg: '⚠️ Error inesperado' };
   }
 };
-
+${vp[4]}
 export {
   sendFaceToAttendanceRegister,
   addNewPerson,
@@ -320,4 +311,7 @@ export {
   deletePerson,
   deletePersonAttendances,
   attendanceConsult,
+  ${vp[5]}
 };
+`;
+}

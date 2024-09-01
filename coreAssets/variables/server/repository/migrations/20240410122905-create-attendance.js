@@ -1,3 +1,8 @@
+import { removeEmptyLines } from "../../../auxi.js";
+
+export function genResource(variabilityPoints) {
+  const vp = { ...variabilityPoints };
+  return removeEmptyLines`
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -22,10 +27,7 @@ module.exports = {
         onDelete: 'RESTRICT',
         onUpdate: 'RESTRICT',
       },
-      date: {
-        type: Sequelize.DATEONLY,
-        allowNull: false,
-      },
+      ${vp[1]}
       hours: {
         type: Sequelize.STRING(10),
         allowNull: false,
@@ -44,3 +46,5 @@ module.exports = {
     await queryInterface.dropTable('Attendances');
   }
 };
+`;
+}

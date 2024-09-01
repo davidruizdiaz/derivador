@@ -60,7 +60,6 @@ async function sendData(userData) {
     notificator.notify('⏳Enviando datos', 'info');
     activeAllButtons(false);
     const resp = await sendUserDataToLogin(userData);
-    console.log(resp)
     if (resp && !resp.ok) {
       notificator.notify(`⚠️ ${resp.msg}`, 'error')
       activeAllButtons(true);

@@ -1,3 +1,8 @@
+import { removeEmptyLines } from "../../../auxi.js";
+
+export function genResource(variabilityPoints) {
+  const vp = { ...variabilityPoints };
+  return removeEmptyLines`
 /**
  * Submódulo que recibe las peticiones de para el registro de las asistencias.
  * @module api/enrutadores/marcación
@@ -15,13 +20,14 @@ const marcacionRouter = Router();
 const upload = multer()
 
 /**
- * Ruta para registrar la marcación de una persona.
+ * Ruta para registrar la marcación de ${vp[1]}.
  * @description POST /api/attendance/register
  */
-marcacionRouter.post('/register', upload.single('clientFaceBlob'), async (req, res) => {
+marcacionRouter.post('/register', upload.single('${vp[2]}'), async (req, res) => {
   try {
+    ${vp[3]}
     const blob = req.file.buffer;
-    const result = await registerAttendance(blob);
+    const result = await registerAttendance(${vp[4]});
     const { ok } = result;
     if (ok) {
       return res.status(200).json(result);
@@ -83,3 +89,6 @@ marcacionRouter.post('/consult', upload.none(), async (req, res) => {
 });
 
 module.exports = marcacionRouter;
+
+`;
+}

@@ -1,3 +1,8 @@
+import { removeEmptyLines } from "../../../auxi.js";
+
+export function genResource(variabilityPoints) {
+  const vp = { ...variabilityPoints };
+  return removeEmptyLines`
 /**
  * Submódulo que direcciona las solicitudes hacia los servicios correspondientes.
  * @module api/controlador/asistencias
@@ -8,21 +13,17 @@ const { AttendanceServices } = require("../../services/attendanceServices");
 /**
  * Inicia el proceso de registro de asistencia.
  * @param Blob {Object} Buffer de la imagen
+ * ${vp[1]}
  * @return {Object} Objeto con los datos de respuesta
  * @example
  * { 
  *  ok: boolean,
- *  person: {
- *    name: string,
- *    document: string,
- *    date: string,
- *    hour: string,
- *  }|msg: string
+ *  ${vp[2]}
  * }
  */
-async function registerAttendance(blob) {
+async function registerAttendance(${vp[3]}) {
   const attendanceService = new AttendanceServices();
-  const result = await attendanceService.registerAttendanceService(blob);
+  const result = await attendanceService.registerAttendanceService(${vp[3]});
   return result;
 }
 
@@ -66,4 +67,7 @@ module.exports = {
   registerAttendance,
   deletePersonAttendanceProcess,
   attendanceConsultProcess,
+}
+
+`;
 }

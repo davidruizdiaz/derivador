@@ -1,3 +1,8 @@
+import { removeEmptyLines } from "../../../../auxi.js";
+
+export function genResource(variabilityPoints) {
+  const vp = { ...variabilityPoints };
+  return removeEmptyLines`
 /**
  * Submódulo de reporte encargado de controlar el funcionamiento
  * general del reporte.
@@ -45,7 +50,7 @@ async function handlerConsult() {
   };
   const res = await attendanceConsult(queryObject);
   if (!res.ok) {
-    notificator.notify(`⚠️ ${res.msg}`, 'error');
+    notificator.notify(\`⚠️ \${res.msg}\`, 'error');
     return;
   } else {
     loadData(res);
@@ -56,11 +61,11 @@ async function handlerConsult() {
  * Inicializa la tabla.
  */
 function initTable() {
-  const temp = `<div class="result">
+  const temp = \`<div class="result">
                   <p class="attendance-empty">
                     ⚠️ Sin datos para mostrar. Ingrese una nueva consulta
                   </p>
-                </div>`;
+                </div>\`;
   document.querySelector('.data-container').innerHTML = temp;
 }
 
@@ -73,28 +78,29 @@ function loadData(data) {
   if (atts.length > 0) {
     let subTemp = '';
     for (const att of atts) {
-      subTemp += `<p class="attendance-detail">
-                    <strong>Fecha: </strong><span>${att.date}</span>
-                    <strong>Hora: </strong><span>${att.hours}</span>
-                  </p>`;
+      subTemp += \`<p class="attendance-detail">
+                    ${vp[1]}
+                    <strong>Fecha: </strong><span>\${att.date}</span>
+                    <strong>Hora: </strong><span>\${att.hours}</span>
+                  </p>\`;
     }
-    temp = `<div class="result">
+    temp = \`<div class="result">
               <div class="personData">
                 <h3 class="title center">Datos personales</h3>
-                <p class="name-container center"><strong>Nombre: </strong><span>${name}</span></p>
-                <p class="document-container center"><strong>Documento: </strong><span>${perDocument}</span></p>
+                <p class="name-container center"><strong>Nombre: </strong><span>\${name}</span></p>
+                <p class="document-container center"><strong>Documento: </strong><span>\${perDocument}</span></p>
               </div>
               <div class="attendanceData">
                 <h3 class="title center">Asistencias</h3>
-                ${subTemp}
+                \${subTemp}
               </div>
-            </div>`;
+            </div>\`;
   } else {
-    temp = `<div class="result">
+    temp = \`<div class="result">
               <div class="personData">
                 <h3 class="title center">Datos personales</h3>
-                <p class="name-container center"><strong>Nombre: </strong><span>${name}</span></p>
-                <p class="document-container center"><strong>Documento: </strong><span>${perDocument}</span></p>
+                <p class="name-container center"><strong>Nombre: </strong><span>\${name}</span></p>
+                <p class="document-container center"><strong>Documento: </strong><span>\${perDocument}</span></p>
               </div>
               <div class="attendanceData">
                 <h3 class="title center">Asistencias</h3>
@@ -102,11 +108,10 @@ function loadData(data) {
                     ⚠️ No hay registros de asistencias en el rango de fecha ingresado
                 </p>
               </div>
-              </div>`;
+              </div>\`;
   }
   document.querySelector('.data-container').innerHTML = temp;
 }
-
-
-
 export { init, initTable };
+`;
+}

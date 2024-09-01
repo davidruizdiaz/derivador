@@ -1,3 +1,8 @@
+import { removeEmptyLines } from "../../auxi.js";
+
+export function genResource(variabilityPoints) {
+  const vp = { ...variabilityPoints };
+  return removeEmptyLines`
 /**
  * Submódulo de servicios.
  * @module frameworks
@@ -29,32 +34,23 @@ class AttendanceServices {
   }
 
   /**
-   * Registra la asistencia de una persona.
+   * ${vp[1]}
    * @async
-   * @param Blob {Object} Buffer de la imagen
+   * ${vp[2]}
    * @returns {Object} Datos de la asistencia
    * @example
-   * { ok: boolean, person:{ name: string, document: string, date: string, hour: string, }|msg: string }
+   * ${vp[3]}
    */
-  async registerAttendanceService(faceBlob) {
+  async registerAttendanceService(${vp[4]}) {
     try {
       const personService = new PersonService();
       const queryResult = await personService.getAllPersonsDescriptorsService();
       if (!queryResult.ok) {
         throw new Error(queryResult.msg);
       }
-      const personMatchedDocument = await matchFace(queryResult.personsDescriptors, faceBlob);
-      const personWithId = await personService.getPersonIdByDocumentService(personMatchedDocument);
-      if (!personWithId.ok) {
-        throw new Error(personWithId.msg);
-      }
-      const newAttendance = {
-        personId: personWithId.personId,
-        date: dayjs().format('YYYY-MM-DD'),
-        hours: dayjs().format('HH:mm:ss')
-      }
-      const savedAttendance = await this.attendanceDb.add(newAttendance);
-      return savedAttendance;
+      ${vp[5]}
+      ${vp[6]}
+      ${vp[7]}
     } catch (error) {
       console.error(error);
       return { ok: false, msg: error.message };
@@ -94,11 +90,7 @@ class AttendanceServices {
    * @example
    * {
    *   ok: boolean,
-   *   result: {
-   *     name: string,
-   *     document: string,
-   *     attendances: [{date: string, hours: string}, ...],
-   *   } | msg: string
+   *   ${vp[8]}
    * }
    */
   async attendancesConsultService(queryObject) {
@@ -116,3 +108,5 @@ class AttendanceServices {
 }
 
 module.exports = { AttendanceServices };
+`;
+}

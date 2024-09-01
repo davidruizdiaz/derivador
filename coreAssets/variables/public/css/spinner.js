@@ -1,15 +1,19 @@
+import { removeEmptyLines } from "../../auxi.js";
+
+export function genResource(variabilityPoints) {
+  const vp = { ...variabilityPoints };
+  return removeEmptyLines`
 .spinner-box {
-  width: 425px;
-  height: 324px;
+  ${vp[1]}
+  ${vp[2]}
   position: relative;
   top: 0;
   left: 0;
   z-index: 10;
 }
-
 .spinner-container {
-  width: 416px;
-  height: 314px;
+  width: ${vp[3]}px;
+  height: ${vp[4]}px;
   position: absolute;
   top: 0;
   left: 0;
@@ -19,11 +23,9 @@
   align-items: center;
   justify-content: center;
 }
-
 .hidden {
   display: none;
 }
-
 .spinner {
   width: 100px;
   height: 100px;
@@ -33,21 +35,17 @@
   animation: spin 1s ease-in-out infinite;
   -webkit-animation: spin 1s ease-in-out infinite;
 }
-
 @keyframes spin {
   to {
     -webkit-transform: rotate(720deg);
   }
 }
-
 @-webkit-keyframes spin {
   to {
     -webkit-transform: rotate(360deg);
   }
 }
-
 /* # PARA CONFIRMACIONES # */
-
 .loaded-ok {
   width: 100px;
   height: 100px;
@@ -57,7 +55,6 @@
   animation: none;
   -webkit-animation: none;
 }
-
 .check {
   position: relative;
   height: 20px;
@@ -69,15 +66,12 @@
   top: 30px;
   left: 15px;
 }
-
 /* # PARA ERRORES # */
-
 .cross {
   width: 100px;
   height: 100px;
   position: relative;
 }
-
 .cross:before,
 .cross:after {
   content: " ";
@@ -88,15 +82,12 @@
   top: 45px;
   left: 15px;
 }
-
 .cross:before {
   transform: rotate(45deg);
 }
-
 .cross:after {
   transform: rotate(-45deg);
 }
-
 .loaded-error {
   width: 100px;
   height: 100px;
@@ -105,4 +96,6 @@
   border-color: #F94C10;
   animation: none;
   -webkit-animation: none;
+}
+`;
 }

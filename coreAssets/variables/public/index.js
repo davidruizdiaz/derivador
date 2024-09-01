@@ -1,29 +1,32 @@
+import { removeEmptyLines } from "../auxi.js";
+
+export function genResource(variabilityPoints) {
+  const vp = { ...variabilityPoints };
+  return removeEmptyLines`
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>App Asistencia | Marcación</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/attendance_main.css">
-    <script defer src="./js/face-api.min.js"></script>
+    ${vp[1]}
     <script defer type="module" src="./js/attendance_main.js"></script>
+    ${vp[2]}
   </head>
   <body>
-    
     <header class="center">
       <div class="login-menu">
+        ${vp[3]}
         <a href="./login.html">Login</a>
       </div>
-      <h1>Marca tu asistencia</h1>
-      <h4>Mira la cámara</h4>
+      <h1>${vp[4]}</h1>
+      <h4>${vp[5]}</h4>
+      ${vp[6]}
     </header>
-
     <div class="cam-container">
       <div class="spinner-box">
-        <video id="video-cam" width="416" height="314" ></video>
+        <video id="video-cam" ${vp[7]}></video>
         <div class="spinner-container hidden">
           <div class="spinner">
             <div class="result hidden"></div>
@@ -32,8 +35,8 @@
       </div>
       <div class="data-container" hidden></div>
     </div>
-
     <div id="notify-content"></div>
-
   </body>
 </html>
+`;
+}

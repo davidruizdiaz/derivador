@@ -1,10 +1,16 @@
+import { removeEmptyLines } from "../../../auxi.js";
+
+export function genResource(variabilityPoints) {
+  const vp = { ...variabilityPoints };
+  return removeEmptyLines`
 /**
  * Submódulo con funciones de la aplicación y consultas a db.
  * @module comportamiento/asistencia
  */
 
-const { Op } = require('sequelize');
+const { ${vp[1]} } = require('sequelize');
 const db = require('../models');
+${vp[2]}
 
 /**
  * Clase que implementa las operaciones a base de datos para asistencias.
@@ -20,31 +26,21 @@ class AttendanceRepositoryBehavior {
   }
 
   /**
-   * Registra la asistencia de una persona.
+   * ${vp[3]}
    * @async
-   * @param attendance {object} Objeto con datos de la asistencia
+   * @param ${vp[4]}
    * @example 
-   * { personId: UUID, date: 'YYYY-MM-DD', hours: 'HH:mm:ss' }
-   * @returns {Object} Registro de la asistencia
+   * ${vp[5]}
+   * @returns ${vp[6]}
    * @example 
-   * { ok: boolean, person: { name: string, date: 'YYYY-MM-DD', hours: 'HH:mm:ss' } | msg: string }
+   * ${vp[7]}
    */
-  async add(attendance) {
+  async add(${vp[8]}) {
     try {
-      const att = await this.attendance.create(attendance);
-      if (!att) {
+      const ${vp[9]} 
         return { ok: false, msg: 'No se pudo registrar la asistencia' }
       } else {
-        const per = await this.db.Person.findByPk(att.personId);
-        return {
-          ok: true,
-          person: {
-            name: per.name,
-            document: per.document,
-            date: att.date,
-            hours: att.hours,
-          },
-        };
+        ${vp[10]}
       }
     } catch (error) {
       console.error(error)
@@ -70,7 +66,7 @@ class AttendanceRepositoryBehavior {
       } else {
         return {
           ok: true,
-          msg: `${queryRes} registros de asistencias eliminados`,
+          msg: \`\${queryRes} registros de asistencias eliminados\`,
         };
       }
     } catch (error) {
@@ -90,7 +86,7 @@ class AttendanceRepositoryBehavior {
    *   ok: boolean,
    *   name: string,
    *   document: string,
-   *   attendances: [{date: string, hours: string}, ...],
+   *   attendances: [{date: string, hours: string${vp[11]}}, ...],
    *   | msg: string
    * }
    */
@@ -105,17 +101,16 @@ class AttendanceRepositoryBehavior {
         return { ok: false, msg: 'No se encontró ningúna persona con ese documento' };
       }
       const atts = await this.attendance.findAll({
-        attributes: ['personId', 'date', 'hours'],
+        attributes: ['personId', '${vp[12]}', 'hours'],
         where: {
           personId: per.id,
-          date: { [Op.between]: [dateFrom, dateUntil] }
-        }
+        ${vp[13]}
       });
       return {
         ok: true,
         name: per.name,
         document: per.document,
-        attendances: !atts ? [] : atts.map(at => ({ date: at.date, hours: at.hours })),
+        ${vp[14]}
       };
     } catch (error) {
       console.error(error)
@@ -126,3 +121,5 @@ class AttendanceRepositoryBehavior {
 }
 
 module.exports = AttendanceRepositoryBehavior;
+`;
+}

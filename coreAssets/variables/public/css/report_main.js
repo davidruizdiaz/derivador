@@ -1,36 +1,34 @@
+import { removeEmptyLines } from "../../auxi.js";
+
+export function genResource(variabilityPoints) {
+  const vp = { ...variabilityPoints };
+  return removeEmptyLines`
 @import url("./normalize.css");
 @import url("./notification.css");
 @import url("./menu.css");
-
 html {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-style: normal;
 }
-
 main {
   width: 90%;
   margin: 0 auto;
 }
-
 .center {
   text-align: center;
 }
-
 /* # FORMULARIO # */
-
 .form {
 
   text-align: center;
 }
-
 .form-control {
   height: 2rem;
   font-size: 1.1rem;
   padding: 0 10px;
   margin-right: 10px;
 }
-
 .btn-consult {
   height: 2rem;
   background: #009688;
@@ -39,11 +37,9 @@ main {
   border-radius: 3px;
   border: none;
 }
-
 .btn-consult:hover {
   box-shadow: 0 0 3px 1px black;
 }
-
 .btn-clean {
   height: 2rem;
   background: #FF5722;
@@ -52,11 +48,9 @@ main {
   border-radius: 3px;
   border: none;
 }
-
 .btn-clean:hover {
   box-shadow: 0 0 3px 1px black;
 }
-
 .btn-print {
   height: 2rem;
   background: #2196F3;
@@ -65,18 +59,14 @@ main {
   border-radius: 3px;
   border: none;
 }
-
 .btn-print:hover {
   box-shadow: 0 0 3px 1px black;
 }
-
 button:disabled {
   opacity: .3;
   pointer-events: none;
 }
-
 /* # Data # */
-
 .result {
   border: 2px black solid;
   border-radius: 3px;
@@ -84,7 +74,6 @@ button:disabled {
   margin: 10px auto;
   padding: 10px 20px;
 }
-
 .personData {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -93,67 +82,54 @@ button:disabled {
     "title title"
     "name document";
 }
-
 .title {
   grid-area: title;
 }
-
 .name-container {
   grid-area: name;
 }
-
 .document-container {
   grid-area: document;
 }
-
 .attendanceData {
   border: 2px black solid;
   border-radius: 3px;
   margin-top: 20px;
 }
-
 .attendance-detail {
+  ${vp[1]}
+  ${vp[2]}
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr ${vp[3]};
+  ${vp[4]}
   align-items: end;
 }
-
 .attendance-detail strong {
   text-align: right;
   padding-right: 30px;
 }
-
 .attendance-empty {
   text-align: center;
   font-size: 1.2rem;
   color: #FF5722;
   padding: 10px 0;
 }
-
 /* # Media query # */
-
 @media print {
-
   .nav {
     display: none;
   }
-
   header h1 {
     font-size: 1.2rem;
   }
-
   .main {
     width: 100%;
     margin: 0 auto;
   }
-
   /* # FORMULARIO # */
-
   .form {
     padding-right: 0px;
   }
-
   .form-control {
     height: 1rem;
     font-size: .9rem;
@@ -161,33 +137,26 @@ button:disabled {
     margin-right: 0;
     border: none;
   }
-
   .btn-consult {
     display: none;
   }
-
   .btn-clean {
     display: none;
   }
-
   .btn-print {
     display: none;
   }
-
   /* # Data # */
-
   .data-container {
     font-size: .7rem;
   }
-
   .result {
     border: 1px black solid;
     border-radius: 3px;
-    width: 90%;
-    margin: 15px auto;
+    width: 9${vp[5]}%;
+    margin: 1${vp[6]}px auto;
     padding: 5px 10px;
   }
-
   .personData {
     display: grid;
     grid-template-columns: 50% 50%;
@@ -196,35 +165,31 @@ button:disabled {
       "title title"
       "name document";
   }
-
   .title {
     grid-area: title;
     font-size: .9rem;
   }
-
   .name-container {
     grid-area: name;
   }
-
   .document-container {
     grid-area: document;
   }
-
   .attendanceData {
     border: 1px black solid;
     border-radius: 3px;
     margin-top: 10px;
   }
-
   .attendance-detail {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr ${vp[7]};
     grid-template-rows: 10px;
     align-items: end;
   }
-
   .attendance-detail strong {
     text-align: right;
     padding-right: 30px;
   }
+}
+`;
 }
